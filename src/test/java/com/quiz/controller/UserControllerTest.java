@@ -1,7 +1,10 @@
-package com.quiz.GradleProject101;
+package com.quiz.controller;
 
 
 import com.google.gson.Gson;
+import com.quiz.api.User;
+import com.quiz.controller.UserController;
+import com.quiz.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +16,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import javax.ws.rs.core.MediaType;
@@ -52,13 +54,11 @@ public class UserControllerTest {
 
     }
 
-
-
     @Test
     public void testPutUsersToUpdateUser1() throws Exception
     {
         Mockito.when(userService.updateUser(any(User.class))).thenReturn(new User(1, "cat", "cat@cat.com"));
-        String user = "{\"id\":1,\"userName\":\"cat\",\"email\":\"cat@cat.com\"}";
+        String user = "{\"id\":1,\"username\":\"cat\",\"email\":\"cat@cat.com\"}";
         MvcResult newValue = mvc.perform(MockMvcRequestBuilders
                 .put("/user/{userId}", 1)
                 .content(new Gson().toJson(new User(1, "cat", "cat@cat.com")))

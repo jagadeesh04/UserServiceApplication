@@ -1,5 +1,7 @@
-package com.quiz.GradleProject101;
+package com.quiz.controller;
 
+import com.quiz.api.User;
+import com.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
